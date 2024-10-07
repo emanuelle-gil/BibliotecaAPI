@@ -1,0 +1,16 @@
+.vs/ 
+bin/ 
+obj/ 
+/Ambiente de Impressão/
+/Ambiente de Rede/
+/AppData/
+/Desktop/
+/Documents/
+/Downloads/
+/Favorites/
+/Music/
+/Pictures/
+/Videos/
+/node_modules/
+*.log
+
