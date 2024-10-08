@@ -10,6 +10,13 @@ public class ClienteProfile : Profile
     {
         CreateMap<CreateClienteDTO, Cliente>();
         CreateMap<UpdateClienteDTO, Cliente>();
-        CreateMap<Cliente, ReadClienteDTO>();
+        CreateMap<Cliente, ReadClienteDTO>()
+            .ForMember(dest => dest.LivrosEmprestados, opt => opt.MapFrom(src => src.LivrosEmprestados.Select(le => new LivroEmprestadoDTO
+            {
+                LivroId = le.LivroId,
+                Titulo = le.Livro.Titulo,
+                DataEmprestimo = le.DataEmprestimo,
+                DataDevolucao = le.DataDevolucao
+            })));
     }
 }

@@ -14,4 +14,5 @@ public class UsuarioDbContext : IdentityDbContext<Usuario>
     
     public DbSet<Livro> Livros { get; set; }
     public DbSet<Cliente> Clientes { get; set;}
+    public DbSet<Emprestimo> Emprestimos { get; set; }
 }
