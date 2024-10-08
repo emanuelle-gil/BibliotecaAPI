@@ -1,16 +1,9 @@
 .vs/ 
 bin/ 
 obj/ 
-/Ambiente de Impressão/
-/Ambiente de Rede/
-/AppData/
-/Desktop/
-/Documents/
-/Downloads/
-/Favorites/
-/Music/
-/Pictures/
-/Videos/
-/node_modules/
+node_modules/
 *.log
+*.user
+.DS_Store
+
 

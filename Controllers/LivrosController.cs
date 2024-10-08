@@ -8,6 +8,7 @@ namespace BibliotecaAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[Authorize]
 public class LivrosController : ControllerBase
 {
     private UsuarioDbContext _context;
@@ -30,10 +31,10 @@ public class LivrosController : ControllerBase
             livro);
     }
 
-    [HttpGet("{Titulo}")]
-    public IActionResult BuscaLivro(String Titulo)
+    [HttpGet("{Id}")]
+    public IActionResult BuscaLivro(int id)
     {
-        var livro = _context.Livros.FirstOrDefault(produto => produto.Titulo == Titulo);
+        var livro = _context.Livros.FirstOrDefault(livro => livro.Id == id);
         if (livro == null) return NotFound();
         var livroDTO = _mapper.Map<ReadLivroDTO>(livro);
         return Ok(livroDTO);
@@ -45,20 +46,20 @@ public class LivrosController : ControllerBase
         return _mapper.Map<List<ReadLivroDTO>>(_context.Livros);
     }
 
-    [HttpPut("{Titulo}")]
-    public IActionResult AtualizarProduto(String Titulo, [FromBody] UpdateLivroDTO livroDTO)
+    [HttpPut("{Id}")]
+    public IActionResult AtualizarLivro(int Id, [FromBody] UpdateLivroDTO livroDTO)
     {
-        var livro = _context.Livros.FirstOrDefault(livro => livro.Titulo == Titulo);
+        var livro = _context.Livros.FirstOrDefault(livro => livro.Id == Id);
         if (livro == null) return NotFound();
         _mapper.Map(livroDTO, livro);
         _context.SaveChanges();
         return NoContent();
     }
 
-    [HttpDelete("{Titulo}")]
-    public IActionResult DeletaLivro(string Titulo)
+    [HttpDelete("{Id}")]
+    public IActionResult DeletaLivro(int id)
     {
-        var livro = _context.Livros.FirstOrDefault(livro => livro.Titulo == Titulo);
+        var livro = _context.Livros.FirstOrDefault(livro => livro.Id == id);
         if (livro == null) return NotFound();
         _context.Remove(livro);
         _context.SaveChanges(); 
