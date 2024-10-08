@@ -25,7 +25,7 @@ public class ClientesController : ControllerBase
         Cliente cliente = _mapper.Map<Cliente>(clienteDTO);
         _context.Clientes.Add(cliente);
         _context.SaveChanges();
-        return CreatedAtAction(nameof(BuscaCliente)
+        return CreatedAtAction(nameof(BuscaCliente),
     new { nome = cliente.Nome },
     cliente);
     }
